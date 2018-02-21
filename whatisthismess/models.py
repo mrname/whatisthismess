@@ -6,7 +6,8 @@ class Quark(models.Model):
     Represents a thing of choose
     '''
     mystery = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=255)
 
     @property
-    def create_magic(self):
+    def magic(self):
         return 'such magic'
