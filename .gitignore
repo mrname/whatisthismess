@@ -99,3 +99,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+*ropeproject*
+
+db.sqlite3
