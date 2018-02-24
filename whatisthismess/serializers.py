@@ -8,7 +8,7 @@ class QuarkSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Quark
-        fields = ('mystery', 'name', 'magic')
+        fields = ('mystery', 'name', 'magic', 'magic2')
 
     def get_magic(self, obj):
         return 'such magic'

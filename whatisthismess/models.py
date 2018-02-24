@@ -10,4 +10,14 @@ class Quark(models.Model):
 
     @property
     def magic(self):
+        '''
+        Makes magic
+        '''
         return 'such magic'
+
+    @property
+    def magic2(self):
+        '''
+        Makes more magic
+        '''
+        return self.mystery[1:]
