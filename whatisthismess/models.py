@@ -13,6 +13,8 @@ class Quark(models.Model):
         '''
         Makes magic
         '''
+        if self.name == 'heman':
+            return 'incredible magic'
         return 'such magic'
 
     @property
