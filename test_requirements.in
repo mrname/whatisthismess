@@ -1,0 +1,4 @@
+pytest-django
+pytest-cov
+pytest-socket
+factory_boy
