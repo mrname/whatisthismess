@@ -16,3 +16,21 @@ class TestQuarkEndpoint(APITestCase):
 
         assert res.status_code == 201
         assert res.data['magic'] == 'please work'
+
+
+class TestCrazySauceEndpoint(APITestCase):
+
+    def test_post_crazy_sauce(self):
+        '''
+        A POST to crazy sauce should go through the provided array of integers,
+        apply the current crazy sauce factor (it's 2 right now?) and return
+        both the old sauce and the new sauce
+        '''
+        # Let's be simple for now and assume crazy sauce will always be two
+        data = [2,4]
+        expected_sauce = [4,8]
+        res = self.client.post('/crazy_sauce/', data, format='json')
+
+        assert res.status_code == 200
+        assert res.data['old_sauce'] == data
+        assert res.data['new_sauce'] == expected_sauce

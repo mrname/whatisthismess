@@ -18,7 +18,7 @@ from django.contrib import admin
 
 from rest_framework import routers
 
-from whatisthismess.views import QuarkViewSet
+from whatisthismess.views import CrazySauceView, QuarkViewSet
 
 router = routers.DefaultRouter()
 router.register(r'quark', QuarkViewSet)
@@ -26,4 +26,5 @@ router.register(r'quark', QuarkViewSet)
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
+    url(r'^crazy_sauce/', CrazySauceView.as_view(), name='crazy_sauce'),
 ]
