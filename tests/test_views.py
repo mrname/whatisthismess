@@ -20,7 +20,8 @@ class TestQuarkEndpoint(APITestCase):
 
 class TestCrazySauceEndpoint(APITestCase):
 
-    def test_post_crazy_sauce(self):
+    @mock.patch('whatisthismess.crazy_sauce.CrazySauce.send_email')
+    def test_post_crazy_sauce(self, mock_send_email):
         '''
         A POST to crazy sauce should go through the provided array of integers,
         apply the current crazy sauce factor (it's 2 right now?) and return

@@ -8,12 +8,27 @@ class CrazySauce():
 
     def make_sauce(self, things, sauce_factor):
         '''
-        Makes sauce, returns said sauce
+        Given a list of integers, returns the same list multipled by the
+        provided sauce_factor
+
+        :param things: list of integers
+        :param sauce_factor: integer representing some type of magic sauce
         '''
         for idx, thing in enumerate(things):
             stuff = thing * sauce_factor
             things[idx] = stuff
 
-        self.smtp.sendmail('admin@test.com', stuff)
+        self.send_email(stuff)
 
         return things
+
+    def send_email(self, stuff, email_to='admin@test.com'):
+        '''
+        Just sends an email to a given address using the instance's mailer
+
+        :param stuff: contents of email
+        :type stuff: list of integers
+        :param email_to: address to email to.
+        :type email_to: string
+        '''
+        return self.smtp.sendmail(email_to, stuff)
