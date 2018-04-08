@@ -3,8 +3,8 @@ import smtplib
 
 class CrazySauce():
 
-    def __init__(self):
-        self.smtp = smtplib.SMTP(host='localhost')
+    def __init__(self, smtp=None):
+        self.smtp = smtp if smtp else smtplib.SMTP(host='localhost')
 
     def make_sauce(self, things, sauce_factor):
         '''
