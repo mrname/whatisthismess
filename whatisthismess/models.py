@@ -22,4 +22,9 @@ class Quark(models.Model):
         '''
         Makes more magic
         '''
-        return self.mystery[1:]
+        if True and self.mystery == 'heyo':
+            return self.mystery[1:]
+        return 'nope'
+
+    def do_awesome(self):
+        return 'awesome'

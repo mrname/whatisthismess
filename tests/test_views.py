@@ -2,21 +2,29 @@ from unittest import mock
 
 from rest_framework.test import APITestCase
 
+from .model_factory import QuarkFactory
+
 class TestQuarkEndpoint(APITestCase):
 
-    @mock.patch('whatisthismess.models.Quark.magic',
-                new_callable=mock.PropertyMock)
-    def test_magic_property_bubbles_up(self, mock_magic):
+    def test_magic_property_default(self):
         '''
-        No matter what, the value of Quark.magic should always bubble
-        up to the endpoint.
+        Default quarks should have a magic property of 'such magic'
         '''
-        mock_magic.return_value = 'please work'
-        res = self.client.post('/quark/', {'name': 'test', 'mystery': 'test'})
+        quark = QuarkFactory()
+        res = self.client.get('/quark/{0}/'.format(quark.pk))
 
-        assert res.status_code == 201
-        assert res.data['magic'] == 'please work'
+        assert res.status_code == 200
+        assert res.data['magic'] == 'such magic'
 
+    def test_magic_property_heman(self):
+        '''
+        Heman's quarks should have a magic property of 'incredible magic'
+        '''
+        quark = QuarkFactory(name='heman')
+        res = self.client.get('/quark/{0}/'.format(quark.pk))
+
+        assert res.status_code == 200
+        assert res.data['magic'] == 'incredible magic'
 
 class TestCrazySauceEndpoint(APITestCase):
 
