@@ -1,6 +1,9 @@
+from copy import deepcopy
 from unittest import mock
 
 from rest_framework.test import APITestCase
+
+from whatisthismess.crazy_sauce import CrazySauce
 
 from .model_factory import QuarkFactory
 
@@ -28,8 +31,11 @@ class TestQuarkEndpoint(APITestCase):
 
 class TestCrazySauceEndpoint(APITestCase):
 
-    @mock.patch('whatisthismess.views.CrazySauce')
-    def test_post_crazy_sauce(self, mock_sauce):
+    def mock_sauce_init(self):
+        self.smtp = mock.Mock()
+
+    @mock.patch.object(CrazySauce, '__init__', new=mock_sauce_init)
+    def test_post_crazy_sauce(self):
         '''
         A POST to crazy sauce should go through the provided array of integers,
         apply the current crazy sauce factor (it's 2 right now?) and return
@@ -38,12 +44,6 @@ class TestCrazySauceEndpoint(APITestCase):
         # Let's be simple for now and assume crazy sauce will always be two
         data = [2,4]
         expected_sauce = [4,8]
-        # Make an instance for the constructor to return
-        mock_sauce_instance = mock.Mock()
-        # Set an expected value for make_sauce
-        mock_sauce_instance.make_sauce.return_value = expected_sauce
-        # Return the mock instance when __init__ is called
-        mock_sauce.return_value = mock_sauce_instance
 
         res = self.client.post('/crazy_sauce/', data, format='json')
 

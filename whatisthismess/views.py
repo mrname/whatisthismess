@@ -23,5 +23,8 @@ class CrazySauceView(APIView):
     def post(self, request):
         sauce = CrazySauce()
         old_stuff = request.data
-        new_stuff = sauce.make_sauce(deepcopy(old_stuff), 2)
+        # Pass a copy of the original data to make_sauce, so that we can
+        # return it in the response
+        #new_stuff = sauce.make_sauce(deepcopy(old_stuff), 2)
+        new_stuff = sauce.make_sauce(old_stuff, 2)
         return Response({'old_sauce': old_stuff, 'new_sauce': new_stuff})

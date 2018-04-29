@@ -3,35 +3,19 @@ from unittest import mock
 from whatisthismess.crazy_sauce import CrazySauce
 
 
+class MockedCrazySauce(CrazySauce):
+    def __init__(self):
+        self.smtp = mock.Mock()
+
+
 class TestCrazySauce():
-
-    def test_init_custom_smtp(self):
-        '''
-        We should be able to initialize and instance of CrazySauce, providing
-        our own SMTP object
-        '''
-        sauce = CrazySauce(smtp='whatev')
-        assert sauce.smtp == 'whatev'
-
-    @mock.patch('smtplib.SMTP')
-    def test_init_default_smtp(self, mock_smtp):
-        '''
-        If not provided, the class should create a default instance of
-        smtplib.SMTP
-        '''
-        smtp_instance = mock.Mock()
-        mock_smtp.return_value = smtp_instance
-        sauce = CrazySauce()
-        assert mock_smtp.called_once_with(host='localhost')
-        assert sauce.smtp == smtp_instance
 
     def test_make_sauce(self):
         '''
         make_sauce should take a list of integers, and return the result
         multiplied by the provided secret sauce.
         '''
-        smtp_instance = mock.Mock()
-        sauce = CrazySauce(smtp=smtp_instance)
+        sauce = MockedCrazySauce()
 
         data = [2, 4]
 

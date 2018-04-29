@@ -9,16 +9,17 @@ class CrazySauce():
     def make_sauce(self, things, sauce_factor):
         '''
         Given a list of integers, returns the same list multipled by the
-        provided sauce_factor
+        provided sauce_factor. Note that the input data is ALSO MUTATED!
 
         :param things: list of integers
         :param sauce_factor: integer representing some type of magic sauce
+        :returns: list of integer with magic sauce applied
         '''
         for idx, thing in enumerate(things):
             stuff = thing * sauce_factor
             things[idx] = stuff
 
-        self.send_email(stuff)
+        self.send_email(things)
 
         return things
 
