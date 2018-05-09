@@ -3,6 +3,8 @@ import smtplib
 
 class CrazySauce():
 
+    # The __init__ method below tries to connect to an SMTP server as soon as
+    # you instatiate the class
     def __init__(self, smtp=None):
         self.smtp = smtp if smtp else smtplib.SMTP(host='localhost')
 
@@ -19,17 +21,6 @@ class CrazySauce():
             stuff = thing * sauce_factor
             things[idx] = stuff
 
-        self.send_email(things)
+        self.smtp.sendmail('someone-important@something-important.com', things)
 
         return things
-
-    def send_email(self, stuff, email_to='admin@test.com'):
-        '''
-        Just sends an email to a given address using the instance's mailer
-
-        :param stuff: contents of email
-        :type stuff: list of integers
-        :param email_to: address to email to.
-        :type email_to: string
-        '''
-        return self.smtp.sendmail(email_to, stuff)
