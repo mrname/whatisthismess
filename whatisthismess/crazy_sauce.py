@@ -5,8 +5,8 @@ class CrazySauce():
 
     # The __init__ method below tries to connect to an SMTP server as soon as
     # you instatiate the class
-    def __init__(self, smtp=None):
-        self.smtp = smtp if smtp else smtplib.SMTP(host='localhost')
+    def __init__(self):
+        self.smtp = smtplib.SMTP(host='localhost')
 
     def make_sauce(self, things, sauce_factor):
         '''

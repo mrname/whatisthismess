@@ -7,7 +7,8 @@ class Processor():
         '''
         Process many things... send report
         '''
-        res = requests.get('http://humanssuck.net/')
+        res = requests.get('http://google.com/')
+        # do some stuff with res
 
         # do many other strange computational things
 
@@ -27,12 +28,12 @@ class SMSProcessor(Processor):
 class RefactoredProcessor():
 
     def get_http_data(self):
-        res = requests.get('http://humanssuck.net/')
+        res = requests.get('http://google.com/')
+        # do other HTTP stuffs
         return res.data
 
     def process_many_things(self):
         data = self.get_http_data()
-
         # do other things
 
 # Adding a new method for added functionality
