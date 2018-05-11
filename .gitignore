@@ -103,3 +103,5 @@ ENV/
 *ropeproject*
 
 db.sqlite3
+
+.pytest_cache*
